@@ -1,13 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import Country from './components/CountryStats';
+import StackComponent from './components/Stack';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Drawer' headerMode='none'>
+        <Stack.Screen name='Drawer' component={StackComponent} />
+        <Stack.Screen name='SingleCountry' component={Country} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
